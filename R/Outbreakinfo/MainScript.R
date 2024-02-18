@@ -1,3 +1,12 @@
+# 特定地域で報告された変異株の報告数を取得し、一定期間で高頻度に出現している変異株を絞り込み
+# 変異株ごとの変異情報を取得し、Nタンパクでのメジャー変異をヒートマップで図示
+# /Resultに保存、細かい条件はメンバ変数で調整
+
+# Invalid token. Please reauthenticate by calling the authenticateUser() function.
+# が表示されたら以下を実行
+# library(outbreakinfo)
+# authenticateUser()
+
 # メンバ変数
 windowDays = 60 # 90 -> 解析日から90日間のデータを使用する、90日以前の変異株はother表記となる
 location = "Japan"
@@ -6,14 +15,11 @@ mutationFrequencyThreshold = 0.10 # 0.10 -> その変異株で10%以上の頻度
 genesToCheck = "N" # N -> nucleocapsid proteinにおける変異頻度を解析する
 fileNameOfResult = "Result.pdf"
 
-# library(outbreakinfo)
-# Invalid token. Please reauthenticate by calling the authenticateUser() function.
-# が表示されたら以下を実行
-# authenticateUser()
 
 # 実行日をファイル名に反映
 analysisDate = format(Sys.Date(), "%Y%m%d")
 fileNameOfResult = paste(analysisDate, fileNameOfResult, sep = "")
+
 # 一定期間で報告された変異株の個数を取得
 lLineagesPrevalentInJapan = getAllLineagesByLocation(location = location, ndays = windowDays, other_threshold = prevalenceThresholdToCount)
 # データフレームに含まれる変異株の名前を抽出
@@ -28,11 +34,12 @@ mutations = getMutationsByLineage(pangolin_lineage = lLineagesPrevalentInJapan, 
 normalDireftory = getwd()
 storageDirectory = paste(normalDireftory, "/Result", sep = "")
 setwd(storageDirectory)
-# 解析結果を出力
+# 解析結果をpdfで出力
 pdf(fileNameOfResult)
-# ヒートマップに変換
+# ヒートマップ作成
 plotMutationHeatmap(mutations, gene2Plot = genesToCheck, title = "N-gene mutations in lineages")
 # 報告された変異株の割合を図示
-plotAllLineagesByLocation(location = location, ndays = windowDays)
+# plotAllLineagesByLocation(location = location, ndays = windowDays)
 dev.off()
+# おまじない、working directoryをもとに戻しておく
 setwd(normalDireftory)
