@@ -15,7 +15,6 @@ mutationFrequencyThreshold = 0.10 # 0.10 -> その変異株で10%以上の頻度
 genesToCheck = "N" # N -> nucleocapsid proteinにおける変異頻度を解析する
 fileNameOfResult = "Result.pdf"
 
-
 # 実行日をファイル名に反映
 analysisDate = format(Sys.Date(), "%Y%m%d%H%M")
 fileNameOfResult = paste(analysisDate, fileNameOfResult, sep = "")
@@ -31,13 +30,18 @@ lineagesPrevalentInJapan = toupper(lineagesPrevalentInJapan)
 mutations = getMutationsByLineage(pangolin_lineage = lineagesPrevalentInJapan, frequency = mutationFrequencyThreshold, logInfo = FALSE)
 
 # 解析結果の保存先の指定
+if(!dir.exists("Result")){
+  dir.create("Result")
+}
 normalDireftory = getwd()
 storageDirectory = paste(normalDireftory, "/Result", sep = "")
 setwd(storageDirectory)
+
 # 解析結果をpdfで出力
 pdf(fileNameOfResult)
 # ヒートマップ作成
 plotMutationHeatmap(mutations, gene2Plot = genesToCheck, title = "N-gene mutations in lineages")
 dev.off()
-# おまじない、working directoryをもとに戻しておく
+
+# working directoryをもとに戻しておく
 setwd(normalDireftory)
