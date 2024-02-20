@@ -8,15 +8,21 @@
 # authenticateUser()
 
 # メンバ変数
-windowDays = 60 # 90 -> 解析日から90日間のデータを使用する、90日以前の変異株はother表記となる
+# 90 -> 解析日から90日間のデータを使用する、90日以前の変異株はother表記となる
+windowDays = 60 
 location = "Japan"
-prevalenceThresholdToCount = 0.05 # 0.05 -> 一定期間で5%以上の頻度で報告されている変異株のみを選択、それ以外はother
-mutationFrequencyThreshold = 0.10 # 0.10 -> その変異株で10%以上の頻度で出現する変異
-genesToCheck = "N" # N -> nucleocapsid proteinにおける変異頻度を解析する
+# 0.05 -> 一定期間で5%以上の頻度で報告されている変異株のみを選択、それ以外はother
+prevalenceThresholdToCount = 0.05
+# 0.10 -> その変異株で10%以上の頻度で出現する変異
+mutationFrequencyThreshold = 0.10
+# N -> nucleocapsid proteinにおける変異頻度を解析する
+genesToCheck = "N"
+# c("BA.1", "BA.2")、変異解析にて流行の有無に関わらず解析したい変異株
+mustCompareVariant = c("")
 fileNameOfResult = "Result.pdf"
 
 # 実行日をファイル名に反映
-analysisDate = format(Sys.Date(), "%Y%m%d%H%M")
+analysisDate = format(Sys.time(), "%Y%m%d%H%M")
 fileNameOfResult = paste(analysisDate, fileNameOfResult, sep = "")
 
 # 一定期間で報告された変異株の個数を取得
@@ -26,6 +32,8 @@ lineagesPrevalentInJapan = unique(lineagesPrevalentInJapan$lineage)
 # 報告数が一定以下の変異株はother表記、不要なので配列から削除
 lineagesPrevalentInJapan = lineagesPrevalentInJapan[-which(lineagesPrevalentInJapan %in% "other")]
 lineagesPrevalentInJapan = toupper(lineagesPrevalentInJapan)
+# 比較対象として指定した変異株をリストに追加
+lineagesPrevalentInJapan = c(lineagesPrevalentInJapan, mustCompareVariant)
 # 高頻度で報告された変異株のN proteinへの変異情報を取得
 mutations = getMutationsByLineage(pangolin_lineage = lineagesPrevalentInJapan, frequency = mutationFrequencyThreshold, logInfo = FALSE)
 
