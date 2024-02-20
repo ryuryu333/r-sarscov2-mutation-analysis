@@ -17,18 +17,18 @@ fileNameOfResult = "Result.pdf"
 
 
 # 実行日をファイル名に反映
-analysisDate = format(Sys.Date(), "%Y%m%d")
+analysisDate = format(Sys.Date(), "%Y%m%d%H%M")
 fileNameOfResult = paste(analysisDate, fileNameOfResult, sep = "")
 
 # 一定期間で報告された変異株の個数を取得
-lLineagesPrevalentInJapan = getAllLineagesByLocation(location = location, ndays = windowDays, other_threshold = prevalenceThresholdToCount)
+lineagesPrevalentInJapan = getAllLineagesByLocation(location = location, ndays = windowDays, other_threshold = prevalenceThresholdToCount)
 # データフレームに含まれる変異株の名前を抽出
-lLineagesPrevalentInJapan = unique(lLineagesPrevalentInJapan$lineage)
+lineagesPrevalentInJapan = unique(lineagesPrevalentInJapan$lineage)
 # 報告数が一定以下の変異株はother表記、不要なので配列から削除
-lLineagesPrevalentInJapan = lLineagesPrevalentInJapan[-which(lLineagesPrevalentInJapan %in% "other")]
-lLineagesPrevalentInJapan = toupper(lLineagesPrevalentInJapan)
+lineagesPrevalentInJapan = lineagesPrevalentInJapan[-which(lineagesPrevalentInJapan %in% "other")]
+lineagesPrevalentInJapan = toupper(lineagesPrevalentInJapan)
 # 高頻度で報告された変異株のN proteinへの変異情報を取得
-mutations = getMutationsByLineage(pangolin_lineage = lLineagesPrevalentInJapan, frequency = mutationFrequencyThreshold, logInfo = FALSE)
+mutations = getMutationsByLineage(pangolin_lineage = lineagesPrevalentInJapan, frequency = mutationFrequencyThreshold, logInfo = FALSE)
 
 # 解析結果の保存先の指定
 normalDireftory = getwd()
