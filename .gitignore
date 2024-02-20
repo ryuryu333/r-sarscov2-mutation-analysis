@@ -59,5 +59,7 @@ rsconnect/
 
 # RStudio project があるディレクトリ以外は除外指定
 memo.txt
+.R_outbreak-info-token
 /R/*
 !/R/Outbreakinfo/
+/R/Outbreakinfo/Result/*
