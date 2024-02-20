@@ -1,11 +1,12 @@
 # 特定地域で報告された変異株の報告数を取得し、一定期間で高頻度に出現している変異株を絞り込み
 # 変異株ごとの変異情報を取得し、Nタンパクでのメジャー変異をヒートマップで図示
 # /Resultに保存、細かい条件はメンバ変数で調整
-
-# Invalid token. Please reauthenticate by calling the authenticateUser() function.
-# が表示されたら以下を実行
+# 1:プロジェクトファイルを開いた直後
+# 2:Invalid token. Please reauthenticate by calling the authenticateUser() function.が表示された時
+# 上記の場合は以下を実行
 # library(outbreakinfo)
 # authenticateUser()
+
 
 # メンバ変数
 # 90 -> 解析日から90日間のデータを使用する、90日以前の変異株はother表記となる
