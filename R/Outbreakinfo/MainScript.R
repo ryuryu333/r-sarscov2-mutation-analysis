@@ -38,8 +38,6 @@ setwd(storageDirectory)
 pdf(fileNameOfResult)
 # ヒートマップ作成
 plotMutationHeatmap(mutations, gene2Plot = genesToCheck, title = "N-gene mutations in lineages")
-# 報告された変異株の割合を図示
-# plotAllLineagesByLocation(location = location, ndays = windowDays)
 dev.off()
 # おまじない、working directoryをもとに戻しておく
 setwd(normalDireftory)
