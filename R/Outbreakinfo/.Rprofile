@@ -1,2 +1,5 @@
+# install.packages("devtools")
+# devtools::install_github("outbreak-info/R-outbreak-info")
+library(utils)
 library(outbreakinfo)
-# at first do authenticateUser()
+authenticateUser()
