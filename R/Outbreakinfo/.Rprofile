@@ -1,6 +1,7 @@
 # 初回使用時は下記2行を実行
 # install.packages("devtools")
 # devtools::install_github("outbreak-info/R-outbreak-info")
+# authenticateUser()
 library(utils)
 library(magrittr)
 library(stringr)
@@ -14,12 +15,6 @@ plotLineagesPrevalence =
   {
     #outbreakinfoライブラリのplotAllLineagesByLocationを改変
     #コメント箇所が追加/編集した部分
-    #必須ライブラリ
-    library(magrittr)
-    library(stringr)
-    library(dplyr)
-    library(ggplot2)
-    library(outbreakinfo)
     #色分けパターンを定義
     #memo 現状だと10個以上の変異株は表示できないが10個も表示されない予定なので無視
     COLORPALETTE <- brewer.pal(10, "Set3")
