@@ -5,7 +5,7 @@ SARS CoV-2 変異情報の解析
 変異株のN抗原のメジャー変異をヒートマップ形式で出力  
 
 ## 利用上の注意
-コードの使用、及び、改変は下記サービスの利用規約に準ずる
+コードの使用、及び、改変は下記サービスの利用規約に準ずる  
 [GISAID](https://gisaid.org/)  
 [R package for outbreak.info](https://outbreak-info.github.io/R-outbreak-info/)  
 
