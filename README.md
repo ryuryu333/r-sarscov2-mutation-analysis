@@ -31,9 +31,8 @@ RStudioのFileタブで以下のプロジェクトファイルを開く
     
     Home/Outbreakinfo/Outbreakinfo.Rproj
 
-画面が自動遷移するのでGISAIDにてログイン  
 下記スクリプトを実行、Resultフォルダに結果が出力される  
+MainScript冒頭の各変数にて解析に用いる地域/期間等を調整可能  
+注意：GISAIDへのログインが必須  
 
     Home/Outbreakinfo/MainScript.R  
-    
-MainScript冒頭の各変数にて解析に用いる地域/期間等を調整可能
