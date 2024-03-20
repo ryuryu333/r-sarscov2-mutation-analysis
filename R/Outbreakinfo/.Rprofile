@@ -1,12 +1,12 @@
-# 初回使用時は下記2行を実行
-# install.packages("devtools")
-# devtools::install_github("outbreak-info/R-outbreak-info")
+# 起動時は下記を実行
 # authenticateUser()
+
 library(utils)
 library(magrittr)
 library(stringr)
 library(dplyr)
 library(ggplot2)
+library(RColorBrewer)
 library(outbreakinfo)
 
 plotLineagesPrevalence = 
@@ -55,5 +55,3 @@ plotLineagesPrevalence =
     }
     return(p)
   }
-
-authenticateUser()
